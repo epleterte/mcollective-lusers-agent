@@ -13,8 +13,6 @@ EOF
       if ARGV.size == 0
         #raise "You must pass an action!"
         configuration[:action] = 'who'
-      elsif ARGV.size > 1
-        raise 'Please specify only one action'
       else
         configuration[:action] = ARGV.shift
       end
