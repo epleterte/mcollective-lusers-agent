@@ -47,13 +47,13 @@ EOF
         # XXX: sanitize .. ? probably 8)
         mc.wall(:msg => ARGV)
       when "has_user"
-        # XXX: probably give some output here...
         mc.has_user(:user => ARGV.to_s ) do |r|
-          # XXX: add 'unless' something...
           printf("%-40s: %s\n", r[:senderid], r[:body][:data][:out]) if r[:body][:data][:msg] == 0
         end
       when "has_group"
-        mc.has_group(:group => ARGV )
+        mc.has_group(:group => ARGV.to_s ) do |r|
+          printf("%-40s: %s\n", r[:senderid], r[:body][:data][:out]) if r[:body][:data][:msg] == 0
+        end
       end
 
       printrpcstats
