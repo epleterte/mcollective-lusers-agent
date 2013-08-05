@@ -25,12 +25,12 @@ action "has_user", :description => "check which systems has the given user" do
 
    output :msg,
           :description => "Check if user exists on system",
-          :display_as  => "has_user"
+          :display_as  => "result"
 end
 action "has_group", :description => "check which systems has the given group" do
    display :always
 
    output :msg,
           :description => "Check if group exists on system",
-          :display_as  => "has_group"
+          :display_as  => "result"
 end
