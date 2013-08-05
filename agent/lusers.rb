@@ -41,7 +41,7 @@ module MCollective
       end
       action "has_group" do
         # XXX: list?
-        validate :user, String
+        validate :group, String
         reply[:msg] = run("getent group #{request[:group]}", :stdout => :out, :stderr => :err, :chomp => false)
       end
 
