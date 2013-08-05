@@ -48,7 +48,10 @@ EOF
         mc.wall(:msg => ARGV)
       when "has_user"
         # XXX: probably give some output here...
-        mc.has_user(:user => ARGV )
+        mc.has_user(:user => ARGV ).each do |r|
+          # XXX: add 'unless' something...
+          printf("%-40s: %s\n", r[:sender], r[:data][:msg][:stdout])
+        end
       when "has_group"
         mc.has_group(:group => ARGV )
       end
