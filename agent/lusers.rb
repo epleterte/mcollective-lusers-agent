@@ -42,7 +42,7 @@ module MCollective
       action "has_group" do
         # XXX: list?
         validate :user, String
-        reply[:msg] = run("getent passwd #{request[:user]}", :stdout => :out, :stderr => :err, :chomp => false)
+        reply[:msg] = run("getent group #{request[:group]}", :stdout => :out, :stderr => :err, :chomp => false)
       end
 
     end
