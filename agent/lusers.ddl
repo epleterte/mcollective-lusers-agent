@@ -2,7 +2,7 @@ metadata :name        => "lusers",
          :description => "Check logged in users with MCollective",
          :author      => "Christian Bryn",
          :license     => "GPLv2",
-         :version     => "0.5",
+         :version     => "0.5.1",
          :url         => "https://github.com/epleterte/mcollective-lusers-agent",
          :timeout     => 60
 

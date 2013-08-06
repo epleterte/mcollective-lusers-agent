@@ -40,6 +40,8 @@ EOF
         valid_actions = ["who", "wall", "has_user", "has_group"]
         configuration[:action] = ARGV.shift
         if not valid_actions.include?(configuration[:action])
+          handle_message(:raise, 2)
+        end
           
         if ARGV.size != 0
           configuration[:user] = ARGV.to_s
