@@ -46,7 +46,7 @@ EOF
       when "wall"
         # XXX: sanitize .. ? probably 8)
         mc.wall(:msg => ARGV.to_s) do |r|
-          printf("%-40s: OK", r[:senderid]) if r[:body][:data][:msg] == 0
+          printf("%-40s: OK\n", r[:senderid]) if r[:body][:data][:msg] == 0
         end
       when "has_user"
         mc.has_user(:user => ARGV.to_s ) do |r|
