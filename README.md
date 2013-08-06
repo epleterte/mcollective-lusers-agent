@@ -28,7 +28,6 @@ Examples
 
     Finished processing 18 / 18 hosts in 124.84 ms
 
-
     # mco lusers has_user chbry
     icinga.example.domain                   : chbry:x:1000:1000:chbry:/home/chbry:/bin/bash
     git.example.domain                      : chbry:x:1000:1000:chbry:/home/chbry:/bin/bash
@@ -38,13 +37,11 @@ Examples
 
 
     Finished processing 17 / 17 hosts in 135.51 ms
-
-
+    
     # mco lusers wall "hello lusers"
 
 
     Finished processing 23 / 23 hosts in 135.51 ms
-
 
 Building (RPM) packages
 -----------------------
