@@ -32,4 +32,11 @@ Now proceed with building the RPMs:
 
 Upload the rpms produced to your local repo and be happy.
 
+Todo
+----
 
+* who should take a user as a filter (to check if a given user is logged in)
+* make code prettier
+* modify/add/remove users and groups? this can already be done with the puppetral functionality (which could be used internally here).
+* ability to kick (kill) users? would be cool
+  - an extension to this would be modifying shell to _nologin_
