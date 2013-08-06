@@ -48,7 +48,21 @@ EOF
         mc.wall(:msg => ARGV)
       when "has_user"
         mc.has_user(:user => ARGV.to_s ) do |r|
-          printf("%-40s: %s\n", r[:senderid], r[:body][:data][:out]) if r[:body][:data][:msg] == 0
+          # XXX: argv can be a string of several users, i.e. "john jane"
+          #printf("%-40s: %s\n", r[:senderid], r[:body][:data][:out]) if r[:body][:data][:msg] == 0
+          # this will give an entry for each user, i.e.:
+          #   host.name          : john
+          #   host.name          : jane
+          #   other.host.name    : john
+          #
+          # ...which is easy to parse. Could do
+          #   host.name          : john
+          #                      : jane
+          #
+          # which would be easier to 'parse' for human eyes, visually separating hosts/data better
+          r[:body][:data][:out].split(' ').each do |u|
+            printf("%-40s: %s\n", r[:senderid], u)
+          end
         end
       when "has_group"
         mc.has_group(:group => ARGV.to_s ) do |r|
