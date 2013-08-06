@@ -5,8 +5,31 @@ module MCollective
     usage <<-EOF
 mco lusers [OPTIONS] [FILTERS] <action>
 
-Default and only action is 'who'
+Default action is 'who'.
+Other actions include
+
+  wall      - message users with 'wall'
+  has_user  - check for user with 'getent passwd'
+  has_group - check for group with 'getent group'
+
 EOF
+    option :user,
+           :arguments   => ["--user", "-u"],
+           :description => "User name to query for",
+           :type        => :string
+
+    option :group,
+           :arguments   => ["--group", "-g"],
+           :description => "Group to query for",
+           :type        => :string
+
+    def handle_message(action, message, *args)
+      messages = {1 => "Please specify action",
+                  2 => "Action has to be one of who, wall, has_user or has_group",
+                  3 => "Do you really want to operate on services unfiltered? (y/n): "}
+
+      send(action, messages[message] % args)
+    end
 
     def post_option_parser(configuration)
       # XXX: we should take user name(s) as an argument
@@ -14,7 +37,13 @@ EOF
         #raise "You must pass an action!"
         configuration[:action] = 'who'
       else
+        valid_actions = ["who", "wall", "has_user", "has_group"]
         configuration[:action] = ARGV.shift
+        if not valid_actions.include?(configuration[:action])
+          
+        if ARGV.size != 0
+          configuration[:user] = ARGV.to_s
+        end
       end
     end
 
@@ -30,13 +59,14 @@ EOF
 
       case action
       when "who"
-        # XXX: ...
-        if ARGV.to_s != ''
-          user = ARGV.to_s
-        else
-          user = ''
-        end
-        mc.who(user) do |r|
+        ## XXX: ...
+        #if ARGV.to_s != ''
+        #  user = ARGV.to_s
+        #else
+        #  user = ''
+        #end
+        #mc.who(user) do |r|
+        mc.who() do |r|
           begin
               lusers = []
               r[:body][:data][:msg].each do |l|

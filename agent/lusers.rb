@@ -10,7 +10,8 @@ module MCollective
         data.each do |l|
           # we rely heavily on having that environment variable (LC_ALL => en_US.UTF-8) set
           user = l.strip.split{/ */}
-          if not filter == '' and not filter == user[0]
+          #if not filter == '' and not filter == user[0]
+          if not request[:user] == '' and not request[:user] == user[0]
             next
           end
 
@@ -24,7 +25,7 @@ module MCollective
       end
       
       action "who" do
-        if request.include?(:user)
+        if request.data.include?(:user)
           validate :user, String
         else
           # set empty filter ...
