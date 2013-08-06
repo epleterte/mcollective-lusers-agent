@@ -28,7 +28,7 @@ action "has_user", :description => "check which systems has the given user" do
           :description => "User to query for",
           :validation  => '^[a-zA-Z\-_\d]+$',
           :optional    => false,
-          :maxlength   -> 256
+          :maxlength   => 256
 
    output :msg,
           :description => "Check if user exists on system",
@@ -43,7 +43,7 @@ action "has_group", :description => "check which systems has the given group" do
           :description => "Group to query for",
           :validation  => '^[a-zA-Z\-_\d]+$',
           :optional    => false,
-          :maxlength   -> 256
+          :maxlength   => 256
 
    output :msg,
           :description => "Check if group exists on system",
