@@ -30,7 +30,13 @@ EOF
 
       case action
       when "who"
-        mc.who() do |r|
+        # XXX: ...
+        if ARGV.to_s != ''
+          user = ARGV.to_s
+        else
+          user = ''
+        end
+        mc.who(user) do |r|
           begin
               lusers = []
               r[:body][:data][:msg].each do |l|

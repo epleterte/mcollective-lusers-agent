@@ -5,11 +5,15 @@
 module MCollective
   module Agent
     class Lusers<RPC::Agent
-      def parse_who(data)
+      def parse_who(data, filter='')
         lusers = []
         data.each do |l|
-          # we rely heavily on having that environment variable set
+          # we rely heavily on having that environment variable (LC_ALL => en_US.UTF-8) set
           user = l.strip.split{/ */}
+          if not filter == '' and not filter == user[0]
+            next
+          end
+
           # XXX: this if bit does not work I thing
           if not user.include?(4)
             user[4] = "local"
@@ -20,10 +24,17 @@ module MCollective
       end
       
       action "who" do
+        if request.include(:user)
+          validate :user, String
+        else
+          # set empty filter ...
+          user = ''
+        end
+
         data = ""
         # XXX: use w instead of who? Slower, but shows idle time etc, which is of great interest.
         reply[:status] = run("who", :stdout => data, :stderr => :err, :chomp => false, :environment => {"LC_ALL" => "en_US.UTF-8"})
-        reply[:msg] = parse_who(data)
+        reply[:msg] = parse_who(data, user)
       end
       action "wall" do
         validate :msg, String
