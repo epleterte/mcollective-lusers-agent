@@ -66,7 +66,11 @@ EOF
         end
       when "has_group"
         mc.has_group(:group => ARGV.to_s ) do |r|
-          printf("%-40s: %s\n", r[:senderid], r[:body][:data][:out]) if r[:body][:data][:msg] == 0
+          #printf("%-40s: %s\n", r[:senderid], r[:body][:data][:out]) if r[:body][:data][:msg] == 0
+          # doing the same as in has_user:
+          r[:body][:data][:out].split(' ').each do |u|
+            printf("%-40s: %s\n", r[:senderid], u)
+          end
         end
       end
 
