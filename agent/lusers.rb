@@ -5,12 +5,9 @@
 module MCollective
   module Agent
     class Lusers<RPC::Agent
-      def who
-        out = ""
-        # XXX: use w instead of who? Slower, but shows idle time etc, which is of great interest.
-        reply[:status] = run("who", :stdout => out, :stderr => :err, :chomp => false, :environment => {"LC_ALL" => "en_US.UTF-8"})
+      def parse_who(data)
         lusers = []
-        out.each do |l|
+        data.each do |l|
           # we rely heavily on having that environment variable set
           user = l.strip.split{/ */}
           # XXX: this if bit does not work I thing
@@ -22,13 +19,11 @@ module MCollective
         return lusers
       end
       
-      def wall
-      end
-
-
       action "who" do
-        # XXX: error handling in case who fails
-        reply[:msg] = who()
+        data = ""
+        # XXX: use w instead of who? Slower, but shows idle time etc, which is of great interest.
+        reply[:status] = run("who", :stdout => data, :stderr => :err, :chomp => false, :environment => {"LC_ALL" => "en_US.UTF-8"})
+        reply[:msg] = parse_who(data)
       end
       action "wall" do
         validate :msg, String
