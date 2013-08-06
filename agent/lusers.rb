@@ -24,7 +24,7 @@ module MCollective
       end
       
       action "who" do
-        if request.include(:user)
+        if request.include?(:user)
           validate :user, String
         else
           # set empty filter ...
