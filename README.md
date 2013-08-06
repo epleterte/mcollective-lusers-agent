@@ -16,6 +16,35 @@ The plugin client application takes some actions - _who_, _wall_, _has_user_, _h
     has_user  - ask the environment if a given user exists (with _getent passwd_). takes one or more users as a string.
     has_group  - ask the environment if a given group exists (with _getent group). takes one or more groups as a string.
 
+Examples
+--------
+
+    root@mco1 # mco lusers who
+    login.example.domain                    : john,jane,jane,root
+    web2.example.domain                     : jane
+    web1.example.domain                     : john,jane,jane,root
+    git.example.domain                      : root
+
+
+    Finished processing 18 / 18 hosts in 124.84 ms
+
+
+    # mco lusers has_user chbry
+    icinga.example.domain                   : chbry:x:1000:1000:chbry:/home/chbry:/bin/bash
+    git.example.domain                      : chbry:x:1000:1000:chbry:/home/chbry:/bin/bash
+    puppet.example.domain                   : chbry:x:1000:1000:chbry:/home/chbry:/bin/bash
+    web1.example.domain                     : chbry:x:1000:1000:chbry:/home/chbry:/bin/bash
+    login.example.domain                    : chbry:x:1000:1000:chbry:/home/chbry:/bin/bash
+
+
+    Finished processing 17 / 17 hosts in 135.51 ms
+
+
+    # mco lusers wall "hello lusers"
+
+
+    Finished processing 23 / 23 hosts in 135.51 ms
+
 
 Building (RPM) packages
 -----------------------
