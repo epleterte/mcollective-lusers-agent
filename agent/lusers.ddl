@@ -32,7 +32,7 @@ action "has_user", :description => "check which systems has the given user" do
 
    output :msg,
           :description => "Check if user exists on system",
-          :display_as  => "result",
+          :display_as  => "result"
 
 end
 action "has_group", :description => "check which systems has the given group" do
