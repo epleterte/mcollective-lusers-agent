@@ -9,7 +9,7 @@ The plugin is not currently very pretty, but it works.
 Usage
 -----
 
-The plugin client application takes some actions - _who_, _wall_, _has_user_, _has_group_. If no action is given the default action is _who_.
+The plugin client application takes some actions - *who*, *wall*, *has_user*, *has_group*. If no action is given the default action is _who_.
 
     who      - queries the environment for logged in users. takes no arguments.
     wall     - write a message to all users with wall. takes one string as an argument, i.e. "hello lusers"
