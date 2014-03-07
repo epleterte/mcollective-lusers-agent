@@ -25,6 +25,7 @@ action "has_user", :description => "check which systems has the given user" do
 
    input  :user,
           :type        => :string,
+          :prompt      => "User",
           :description => "User to query for",
           :validation  => '^[a-zA-Z\-_\d]+$',
           :optional    => false,
@@ -32,7 +33,7 @@ action "has_user", :description => "check which systems has the given user" do
 
    output :msg,
           :description => "Check if user exists on system",
-          :display_as  => "result",
+          :display_as  => "result"
 
 end
 action "has_group", :description => "check which systems has the given group" do
@@ -40,6 +41,7 @@ action "has_group", :description => "check which systems has the given group" do
 
    input  :group,
           :type        => :string,
+          :prompt      => "Group",
           :description => "Group to query for",
           :validation  => '^[a-zA-Z\-_\d]+$',
           :optional    => false,
