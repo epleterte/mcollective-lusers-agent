@@ -44,7 +44,8 @@ EOF
         end
           
         if ARGV.size != 0
-          configuration[:user] = ARGV.to_s
+          #configuration[:user] = ARGV.to_s
+          configuration[:filter] = ARGV.to_s
         end
       end
     end
@@ -54,25 +55,22 @@ EOF
     #end
 
     def main
-      # XXX: action is currently ignored
       action = configuration[:action]
 
       mc = rpcclient('lusers', :options => options)
 
       case action
       when "who"
-        ## XXX: ...
-        #if ARGV.to_s != ''
-        #  user = ARGV.to_s
-        #else
-        #  user = ''
-        #end
-        #mc.who(user) do |r|
         mc.who() do |r|
           begin
               lusers = []
               r[:body][:data][:msg].each do |l|
                 lusers << l['user']
+              end
+              if configuration.has_key?('filter') and not configuration['filter'].empty?
+                filter = configuration['filter'].split(' ')
+                filter.collect!{|x| x.strip}
+                lusers = lusers - filter
               end
               unless lusers.empty?
                 printf("%-40s: %s\n", r[:senderid], lusers.join(','))
