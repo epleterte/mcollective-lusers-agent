@@ -11,10 +11,13 @@ Usage
 
 The plugin client application takes some actions - *who*, *wall*, *has_user*, *has_group*. If no action is given the default action is _who_.
 
-    who      - queries the environment for logged in users. takes no arguments.
-    wall     - write a message to all users with wall. takes one string as an argument, i.e. "hello lusers"
-    has_user  - ask the environment if a given user exists (getent passwd <user>). takes one or more users as a string.
-    has_group  - ask the environment if a given group exists (getent group <group>). takes one or more groups as a string.
+    who        - queries the environment for logged in users.
+                 takes a user name as an optional filter.
+    wall       - write a message to all users with wall. takes one string as an argument, i.e. "hello lusers"
+    has_user   - ask the environment if a given user exists (getent passwd <user>).
+                 takes one or more users as a string.
+    has_group  - ask the environment if a given group exists (getent group <group>).
+                 takes one or more groups as a string.
 
 Examples
 --------
