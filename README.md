@@ -13,7 +13,8 @@ The plugin client application takes some actions - *who*, *wall*, *has_user*, *h
 
     who        - queries the environment for logged in users.
                  takes a user name as an optional filter.
-    wall       - write a message to all users with wall. takes one string as an argument, i.e. "hello lusers"
+    wall       - write a message to all users with wall.
+                 takes one string as an argument, i.e. "hello lusers"
     has_user   - ask the environment if a given user exists (getent passwd <user>).
                  takes one or more users as a string.
     has_group  - ask the environment if a given group exists (getent group <group>).
